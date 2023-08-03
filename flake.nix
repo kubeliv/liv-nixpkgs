@@ -6,9 +6,13 @@
   outputs = { self, nixpkgs, flake-utils }:
     flake-utils.lib.eachDefaultSystem (system:
       let pkgs = import nixpkgs { inherit system; }; in
-        rec {
-          packages.artifakt-server = import ./artifakt-server.nix { inherit pkgs; };
-          packages.default = packages.artifakt-server;
+        {
+          packages.artifakt-server = pkgs.callPackage ./artifakt-server.nix {};
+          packages.default = self.packages.${system}.artifakt-server;
+
+          nixpkgs.overlays = (final: prev: rec {
+            artifakt-server = self.packages.${system}.artifakt-server;
+          });
         }
     );
 }
