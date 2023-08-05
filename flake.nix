@@ -9,10 +9,11 @@
         {
           packages.artifakt-server = pkgs.callPackage ./artifakt-server.nix {};
           packages.default = self.packages.${system}.artifakt-server;
-
-          nixpkgs.overlays = (final: prev: rec {
-            artifakt-server = self.packages.${system}.artifakt-server;
-          });
         }
-    );
+    ) // {
+      overlays.liv = final: prev: rec {
+        artifakt-server = self.packages.${prev.stdenv.hostPlatform.system}.artifakt-server;
+      };
+      overlays.default = self.overlays.liv;
+    };
 }
