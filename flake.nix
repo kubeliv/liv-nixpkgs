@@ -5,14 +5,14 @@
 
   outputs = { self, nixpkgs, flake-utils }:
     flake-utils.lib.eachDefaultSystem (system:
-      let pkgs = import nixpkgs { inherit system; }; in
+      let pkgs = import nixpkgs { inherit system; overlays = [ self.overlays.liv ]; }; in
         {
-          packages.artifakt-server = pkgs.callPackage ./artifakt-server.nix {};
-          packages.default = self.packages.${system}.artifakt-server;
+          packages.artifakt-server = pkgs.artifakt-server;
+          packages.default = pkgs.artifakt-server;
         }
     ) // {
-      overlays.liv = final: prev: rec {
-        artifakt-server = self.packages.${prev.stdenv.hostPlatform.system}.artifakt-server;
+      overlays.liv = final: prev: {
+        artifakt-server = final.callPackage ./artifakt-server.nix {};
       };
       overlays.default = self.overlays.liv;
     };
