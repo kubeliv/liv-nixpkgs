@@ -7,10 +7,8 @@
     path = with pkgs; [
       jdk17_headless
     ];
-    serviceConfig = {
-      environment = {
-        JAVA_HOME = pkgs.jdk17_headless;
-      };
+    environment = {
+      JAVA_HOME = pkgs.jdk17_headless;
     };
     wantedBy = [ "multi-user.target" ];
   };
