@@ -4,7 +4,7 @@
     enable = true;
     description = "Artifakt server";
     script = "${pkgs.artifakt-server}/bin/artifakt-server";
-    paths = with pkgs; [
+    path = with pkgs; [
       jdk17_headless
     ];
     wantedBy = [ "multi-user.target" ];
