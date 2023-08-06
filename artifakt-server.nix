@@ -16,6 +16,8 @@ stdenv.mkDerivation {
     cp -r * $out
   '';
 
+  JAVA_HOME = pkgs.jdk17_headless;
+
   meta = with lib; {
     homepage = "https://git.lovelace.lgbt/liv/artifakt";
     description = "Artifakt Server";
