@@ -15,5 +15,13 @@
         artifakt-server = final.callPackage ./artifakt-server.nix {};
       };
       overlays.default = self.overlays.liv;
+    } // {
+      nixosModule = let
+          artifakt-server = (import ./artifakt-server-service.nix { inherit nixpkgs; }); in
+        { config, ... }: {
+          imports = [
+            ./artifakt-server-service.nix
+          ];
+        };
     };
 }
