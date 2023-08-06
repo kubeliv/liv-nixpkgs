@@ -19,10 +19,6 @@ stdenv.mkDerivation {
     mkdir -p $out/bin
     cp -r lib $out/
     cp bin/server $out/bin/artifakt-server
-  '';
-
-  postInstall = ''
-    ls -la $out
     wrapProgram $out/bin/artifakt-server --prefix PATH : ${lib.makeBinPath [ jdk17_headless ]}
   '';
 
