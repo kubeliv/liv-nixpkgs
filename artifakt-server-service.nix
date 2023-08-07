@@ -4,7 +4,10 @@
     isSystemUser = true;
     home = "/var/lib/artifakt";
     createHome = true;
+    group = "artifakt";
   };
+
+  users.groups.artifakt = {};
 
   systemd.services.artifakt-server = {
     enable = true;
