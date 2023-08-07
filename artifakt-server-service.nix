@@ -14,8 +14,8 @@
       JAVA_HOME = pkgs.jdk17_headless;
     };
     serviceConfig = {
-      User = artifakt;
-      Group = artifakt;
+      User = "artifakt";
+      Group = "artifakt";
     };
     wantedBy = [ "multi-user.target" ];
   };
