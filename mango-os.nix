@@ -14,21 +14,30 @@ stdenv.mkDerivation {
   dontUnpack = true;
 
   installPhase = ''
+    port=16998
+    nport=16999
     mkdir -p $out
     unzip $src -d $out
     pushd $out
+    mkdir tmp-data
+    echo "web.port=$port" > tmp-data/mango.properties
+    echo "ssl.port=$nport" >> tmp-data/mango.properties
     MA_GUID=2-cd8269e6-8d57-429b-b314-8b7f2b998662 mango_paths_data=tmp-data java -jar ./boot/ma-bootstrap.jar &
     pid=$!
     success=false
     while [ "$success" == "false" ]; do
-      if [ "$(curl http://localhost:8080/status | jq '.stateValue')" == "200" ]; then success="true"; fi
+      if [ "$(curl -s http://localhost:$port/status | jq '.stateValue')" == "200" ]; then success="true"; fi
       sleep 1
     done
     kill $pid
+    sleep 3
     rm -r tmp-data
     popd
+    rm $out/bin/{mango.cmd,mango.service,mango.xml,README.md,certbot-deploy.sh,install-mango.sh}
     mv $out/bin/start-mango.sh $out/bin/start-mango
-    wrapProgram $out/bin/start-mango --prefix PATH : ${lib.makeBinPath [ jdk17_headless ]}
+    mv $out/bin/stop-mango.sh $out/bin/stop-mango
+    wrapProgram $out/bin/start-mango --set mango_paths_home $out --prefix PATH : ${lib.makeBinPath [ jdk17_headless ]}
+    wrapProgram $out/bin/stop-mango --set mango_paths_home $out --prefix PATH : ${lib.makeBinPath [ jdk17_headless ]}
   '';
 
   meta = with lib; {
