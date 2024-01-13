@@ -1,4 +1,4 @@
-{ lib, stdenv, fetchurl, unzip, jdk17_headless, curl, jq, makeWrapper }:
+{ lib, stdenv, fetchurl, unzip, jdk17_headless, curl, jq, gawk, makeWrapper }:
 
 stdenv.mkDerivation {
   pname = "mango-os";
@@ -9,7 +9,7 @@ stdenv.mkDerivation {
     sha256 = "sha256:c415c0d449844882865a9d27b7fa0d4f6b23eea29ddb2023ee3904ac05334119";
   };
 
-  buildInputs = [ unzip jdk17_headless curl jq makeWrapper ];
+  buildInputs = [ unzip jdk17_headless curl jq gawk makeWrapper ];
 
   dontUnpack = true;
 
@@ -36,8 +36,8 @@ stdenv.mkDerivation {
     rm $out/bin/{mango.cmd,mango.service,mango.xml,README.md,certbot-deploy.sh,install-mango.sh}
     mv $out/bin/start-mango.sh $out/bin/start-mango
     mv $out/bin/stop-mango.sh $out/bin/stop-mango
-    wrapProgram $out/bin/start-mango --set mango_paths_home $out --prefix PATH : ${lib.makeBinPath [ jdk17_headless ]}
-    wrapProgram $out/bin/stop-mango --set mango_paths_home $out --prefix PATH : ${lib.makeBinPath [ jdk17_headless ]}
+    wrapProgram $out/bin/start-mango --set mango_paths_home $out --prefix PATH : ${lib.makeBinPath [ jdk17_headless gawk ]}
+    wrapProgram $out/bin/stop-mango --set mango_paths_home $out --prefix PATH : ${lib.makeBinPath [ jdk17_headless gawk ]}
   '';
 
   meta = with lib; {
