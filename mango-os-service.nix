@@ -22,12 +22,12 @@
       Group = "mango";
       Type = "forking";
       WorkingDirectory = "${pkgs.mango-os}";
+      EnvironmentFile = "/var/lib/mango/ma.env";
       PIDFile = "/var/lib/mango/ma.pid";
       SuccessExitStatus = "0 SIGINT SIGTERM 130 143";
       Restart = "always";
       NoNewPrivileges = "true";
       LimitNOFILE = "1048576";
-
     };
     wantedBy = [ "multi-user.target" ];
   };
