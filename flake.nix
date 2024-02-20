@@ -8,12 +8,14 @@
       let pkgs = import nixpkgs { inherit system; overlays = [ self.overlays.liv ]; }; in
         {
           packages.artifakt-server = pkgs.artifakt-server;
-	        packages.mango-os = pkgs.mango-os;
+          packages.invader = pkgs.invader;
+          packages.mango-os = pkgs.mango-os;
           packages.default = pkgs.artifakt-server;
         }
     ) // {
       overlays.liv = final: prev: {
         artifakt-server = final.callPackage ./artifakt-server.nix {};
+        invader = final.callPackage ./invader.nix {};
         mango-os = final.callPackage ./mango-os.nix {};
       };
       overlays.default = self.overlays.liv;
