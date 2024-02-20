@@ -1,4 +1,4 @@
-{ lib, stdenv, fetchFromGitHub, cargo, cmake, corrosion, python3, qt6, rustc, SDL2, zlib }:
+{ lib, stdenv, fetchFromGitHub, cargo, cmake, corrosion, flac, freetype, libarchive, libsamplerate, libtiff, libvorbis, python3, qt6, rustc, SDL2, zlib }:
 
 stdenv.mkDerivation rec {
   pname = "invader";
@@ -9,13 +9,16 @@ stdenv.mkDerivation rec {
     repo = pname;
     rev = version;
     fetchSubmodules = true;
-    sha256 = "sha256-NXOXp97izS31hYtqgX/56nRH5LaeKlZlTedAWdIoN1I=";
+    sha256 = "sha256-DeQXYtQq8SD17MYCO4+x/0BMfTAR4f571hY2jGIEHtc=";
   };
 
   dontWrapQtApps = true;
 
   nativeBuildInputs = [ cargo cmake corrosion python3 rustc ];
-  buildInputs = [ qt6.qtbase SDL2 zlib ];
+  buildInputs = [ flac freetype libarchive libsamplerate libtiff libvorbis qt6.qtbase SDL2 zlib ];
+
+  cmakeFlags = [
+  ];
 
   meta = with lib; {
     homepage = "https://invader.opencarnage.net";
