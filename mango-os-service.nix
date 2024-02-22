@@ -7,7 +7,7 @@
     group = "mango";
   };
 
-  users.groups.mango = {};
+  users.groups.mango = { };
 
   systemd.services.mango = {
     enable = true;
