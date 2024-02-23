@@ -11,6 +11,19 @@ index 43aefac5..b04e9544 100644
              archive_entry_set_mtime(entry, s.st_mtime, 0);
              #else
              archive_entry_set_mtime(entry, s.st_mtim.tv_sec, 0);
+diff --git a/src/file/file.cpp b/src/file/file.cpp
+index d1ee0973..6e8d90a4 100644
+--- a/src/file/file.cpp
++++ b/src/file/file.cpp
+@@ -120,7 +120,7 @@ namespace Invader::File {
+             malicious_maybe = true;
+         }
+         else {
+-            for(auto &c : p) {
++            for(const std::filesystem::path &c : p) {
+                 auto str = c.string();
+                 if(str == "." || str == "..") {
+                     malicious_maybe = true;
 diff --git a/src/tag/parser/compile/model.cpp b/src/tag/parser/compile/model.cpp
 index 487a82b9..7143fb39 100644
 --- a/src/tag/parser/compile/model.cpp

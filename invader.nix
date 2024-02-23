@@ -1,8 +1,8 @@
 { lib, stdenv, fetchFromGitHub, cacert, cargo, cmake, corrosion, darwin, flac
-, gcc, gccStdenv, freetype, libarchive, libsamplerate, libsquish, libtiff
+, freetype, libarchive, libsamplerate, libsquish, libtiff
 , libvorbis, python3, qt6, rustc, SDL2, zlib }:
 
-gccStdenv.mkDerivation rec {
+stdenv.mkDerivation rec {
   pname = "invader";
   version = "0.53.4";
 
@@ -14,7 +14,7 @@ gccStdenv.mkDerivation rec {
     sha256 = "sha256-DeQXYtQq8SD17MYCO4+x/0BMfTAR4f571hY2jGIEHtc=";
   };
 
-  patches = [ ./invader-climits-fix.patch ];
+  patches = [ ./invader-fixes.patch ];
 
   preConfigure = ''
     export CARGO_HOME=$(mktemp -d cargo-home.XXX)
@@ -22,7 +22,7 @@ gccStdenv.mkDerivation rec {
 
   dontWrapQtApps = true;
 
-  nativeBuildInputs = [ cacert cargo cmake corrosion gcc python3 rustc ];
+  nativeBuildInputs = [ cacert cargo cmake corrosion python3 rustc ];
   buildInputs = [
     flac
     freetype
@@ -35,9 +35,11 @@ gccStdenv.mkDerivation rec {
     SDL2
     zlib
   ] ++ lib.optional stdenv.isDarwin
-    (with darwin.apple_sdk_11_0.frameworks; [ AppKit ]);
+    (with darwin.apple_sdk.frameworks; [ AppKit ]);
 
-  cmakeFlags = [ ];
+  cmakeFlags = [
+    "-DCMAKE_OSX_SYSROOT=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/"
+  ];
 
   meta = with lib; {
     homepage = "https://invader.opencarnage.net";
