@@ -27,7 +27,7 @@
       } // {
         nixosModules = {
           artifakt-server = { config, ... }: {
-            imports = [ ./artifakt-server-service.nix ];
+            imports = [ ./artifakt-server-module.nix ];
           };
           mango-os = { config, ... }: { imports = [ ./mango-os-service.nix ]; };
         };
