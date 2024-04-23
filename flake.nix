@@ -29,7 +29,7 @@
           artifakt-server = { config, ... }: {
             imports = [ ./artifakt-server-module.nix ];
           };
-          mango-os = { config, ... }: { imports = [ ./mango-os-service.nix ]; };
+          mango-os = { config, ... }: { imports = [ ./mango-os-module.nix ]; };
         };
       };
 }
