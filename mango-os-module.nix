@@ -211,6 +211,7 @@ in {
         Restart = "always";
         NoNewPrivileges = "true";
         LimitNOFILE = "1048576";
+        TimeoutStopSec = "600";
       };
       wantedBy = [ "multi-user.target" ];
     };
