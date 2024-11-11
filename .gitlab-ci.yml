@@ -1,0 +1,33 @@
+.build_template:
+  tags:
+    - infra-nix-builder
+  script:
+    - "nix build .#packages.x86_64-linux.$PACKAGE_NAME"
+
+build_invader:
+  stage: build
+  when: manual
+  extends: .build_template
+  variables:
+    PACKAGE_NAME: invader
+
+build_libsquish:
+  stage: build
+  when: manual
+  extends: .build_template
+  variables:
+    PACKAGE_NAME: libsquish
+
+build_liv-nix-scripts:
+  stage: build
+  when: manual
+  extends: .build_template
+  variables:
+    PACKAGE_NAME: liv-nix-scripts
+
+build_mango-os:
+  stage: build
+  when: manual
+  extends: .build_template
+  variables:
+    PACKAGE_NAME: mango-os
