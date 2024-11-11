@@ -9,21 +9,17 @@
           overlays = [ self.overlays.liv ];
         };
       in {
-        packages.invader = pkgs.invader;
-        packages.libsquish = pkgs.libsquish;
         packages.liv-nix-scripts = pkgs.liv-nix-scripts;
         packages.mango-os = pkgs.mango-os;
       }) // {
         overlays.liv = final: prev: {
-          invader = final.callPackage ./invader.nix { };
-          libsquish = final.callPackage ./libsquish.nix { };
-          liv-nix-scripts = final.callPackage ./liv-nix-scripts.nix { };
-          mango-os = final.callPackage ./mango-os.nix { };
+          liv-nix-scripts = final.callPackage ./pkgs/liv-nix-scripts { };
+          mango-os = final.callPackage ./pkgs/mango-os { };
         };
         overlays.default = self.overlays.liv;
 
         nixosModules = {
-          mango-os = { config, ... }: { imports = [ ./mango-os-module.nix ]; };
+          mango-os = { config, ... }: { imports = [ ./modules/mango-os ]; };
         };
       };
 }
