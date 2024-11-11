@@ -7,8 +7,7 @@ stdenv.mkDerivation rec {
   src = fetchurl {
     url =
       "https://git.lovelace.lgbt/liv/nix-scripts/-/archive/v${version}/nix-scripts-v${version}.tar.gz";
-    sha256 =
-      "sha256:02hmswdiqkn9q1rdq9rfd5pdl7b6za34c4z210nwrdl6n2ppx05r";
+    sha256 = "sha256:02hmswdiqkn9q1rdq9rfd5pdl7b6za34c4z210nwrdl6n2ppx05r";
   };
 
   buildInputs = [ bash ];

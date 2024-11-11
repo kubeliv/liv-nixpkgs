@@ -1,6 +1,6 @@
 { lib, stdenv, fetchFromGitHub, cacert, cargo, cmake, corrosion, darwin, flac
-, freetype, libarchive, libsamplerate, libsquish, libtiff
-, libvorbis, python3, qt6, rustc, SDL2, zlib }:
+, freetype, libarchive, libsamplerate, libsquish, libtiff, libvorbis, python3
+, qt6, rustc, SDL2, zlib }:
 
 stdenv.mkDerivation rec {
   pname = "invader";

@@ -180,7 +180,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    services.mango-os.settings = {};
+    services.mango-os.settings = { };
 
     users.users.mango = {
       isSystemUser = true;
