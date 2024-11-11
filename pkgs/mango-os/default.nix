@@ -2,13 +2,13 @@
 
 stdenv.mkDerivation {
   pname = "mango-os";
-  version = "5.1.1";
+  version = "5.3.0";
 
   src = fetchurl {
     url =
       "https://store.mango-os.com/downloads/fullCores/enterprise-m2m2-core-5.1.1.zip";
     sha256 =
-      "sha256:5f7f98db3d61213f1bf4fdf7266d7abbb3ba4d173aa443fda0ad660ef3ab0b97";
+      "sha256-X3+Y2z1hIT8b9P33Jm16u7O6TRc6pEP9oK1mDvOrC5c=";
   };
 
   buildInputs = [ unzip jdk17_headless curl jq gawk makeWrapper ];
