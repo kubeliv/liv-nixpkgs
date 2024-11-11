@@ -21,7 +21,7 @@
           mango-os = final.callPackage ./mango-os.nix { };
         };
         overlays.default = self.overlays.liv;
-      } // {
+
         nixosModules = {
           mango-os = { config, ... }: { imports = [ ./mango-os-module.nix ]; };
         };
