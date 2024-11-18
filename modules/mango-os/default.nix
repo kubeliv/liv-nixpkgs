@@ -39,6 +39,12 @@ in {
                 "Redundant option for NixOS because the properties file is read only.";
               default = false;
             };
+            "installation.immutable" = mkOption {
+              type = types.bool;
+              description = lib.mdDoc
+                "Make the installation immutable - this will disable upgrades.";
+              default = true;
+            };
             "web.port" = mkOption {
               type = types.port;
               description = lib.mdDoc "Port for the HTTP server to listen on.";
