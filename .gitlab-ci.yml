@@ -2,7 +2,7 @@
   tags:
     - infra-nix-builder
   script:
-    - "nix build .#packages.x86_64-linux.$PACKAGE_NAME"
+    - "nix build --print-build-logs .#packages.x86_64-linux.$PACKAGE_NAME"
 
 build_liv-nix-scripts:
   stage: build
