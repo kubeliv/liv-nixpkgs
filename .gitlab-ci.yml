@@ -15,3 +15,9 @@ build_mango-os:
   extends: .build_template
   variables:
     PACKAGE_NAME: mango-os
+
+build_redscript:
+  stage: build
+  extends: .build_template
+  variables:
+    PACKAGE_NAME: redscript
