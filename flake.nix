@@ -1,9 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-
     flake-utils.url = "github:numtide/flake-utils";
-    flake-utils.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, flake-utils }:
@@ -17,11 +15,13 @@
         packages.liv-nix-scripts = pkgs.liv-nix-scripts;
         packages.mango-os = pkgs.mango-os;
         packages.redscript = pkgs.redscript;
+        packages.rkmod = pkgs.rkmod;
       }) // {
         overlays.liv = final: prev: {
           liv-nix-scripts = final.callPackage ./pkgs/liv-nix-scripts { };
           mango-os = final.callPackage ./pkgs/mango-os { };
           redscript = final.callPackage ./pkgs/redscript { };
+          rkmod = final.callPackage ./pkgs/rkmod { };
         };
         overlays.default = self.overlays.liv;
 

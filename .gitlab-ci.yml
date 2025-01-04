@@ -21,3 +21,9 @@ build_redscript:
   extends: .build_template
   variables:
     PACKAGE_NAME: redscript
+
+build_rkmod:
+  stage: build
+  extends: .build_template
+  variables:
+    PACKAGE_NAME: rkmod
