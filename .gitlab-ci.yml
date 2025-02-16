@@ -16,6 +16,12 @@ build_mango-os:
   variables:
     PACKAGE_NAME: mango-os
 
+build_oidc-cli:
+  stage: build
+  extends: .build_template
+  variables:
+    PACKAGE_NAME: oidc-cli
+
 build_redscript:
   stage: build
   extends: .build_template
