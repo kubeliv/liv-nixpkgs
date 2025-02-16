@@ -14,12 +14,14 @@
       in {
         packages.liv-nix-scripts = pkgs.liv-nix-scripts;
         packages.mango-os = pkgs.mango-os;
+        packages.oidc-cli = pkgs.oidc-cli;
         packages.redscript = pkgs.redscript;
         packages.rkmod = pkgs.rkmod;
       }) // {
         overlays.liv = final: prev: {
           liv-nix-scripts = final.callPackage ./pkgs/liv-nix-scripts { };
           mango-os = final.callPackage ./pkgs/mango-os { };
+          oidc-cli = final.callPackage ./pkgs/oidc-cli { };
           redscript = final.callPackage ./pkgs/redscript { };
           rkmod = final.callPackage ./pkgs/rkmod { };
         };
