@@ -19,7 +19,8 @@ rustPlatform.buildRustPackage rec {
     openssl
   ];
 
-  cargoHash = "sha256-FFIZHEPIND+4BUZHLkjneM3Fr6eQtRCwp/GLWfAJbs8=";
+  useFetchCargoVendor = true;
+  cargoHash = "sha256-dnseDThukj5wNfigcbzkEJCBoGYLYfTOv8h07ZZtmbw=";
 
   meta = with lib; {
     homepage = "https://github.com/ctron/oidc-cli";
