@@ -12,7 +12,7 @@ rustPlatform.buildRustPackage rec {
   };
 
   useFetchCargoVendor = true;
-  cargoHash = "sha256-yBYy5jarXNGH1FIP25WFrx2h+8b/unV1bH3oJZCsxl8=";
+  cargoHash = "sha256-eo/RMo3Xw/TrOmI9jgAYXTEXFi7uYz/c++fkLFB3Eok=";
 
   meta = with lib; {
     homepage = "https://github.com/edera-dev/rkmod";
